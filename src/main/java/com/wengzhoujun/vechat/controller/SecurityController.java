@@ -28,21 +28,4 @@ public class SecurityController {
         return ResponseUtil.error(ErrorCode.NEED_SIGN_IN);
     }
 
-    @GetMapping(value = "/swagger/login")
-    @ApiOperation(value = "Swagger接口文档专用登录接口 方便测试")
-    public Result swaggerLogin(@RequestParam String username, @RequestParam String password,
-                               @ApiParam("验证码") @RequestParam(required = false) String code,
-                               @ApiParam("图片验证码ID") @RequestParam(required = false) String captchaId,
-                               @ApiParam("可自定义登录接口地址")
-                               @RequestParam(required = false, defaultValue = "http://127.0.0.1:8888/user/login")
-                                       String loginUrl) {
-
-        Map<String, Object> params = new HashMap<>(16);
-        params.put("username", username);
-        params.put("password", password);
-        params.put("code", code);
-        params.put("captchaId", captchaId);
-        String result = HttpUtil.post(loginUrl, params);
-        return ResponseUtil.ok(result);
-    }
 }

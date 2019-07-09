@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api(tags = "测试接口")
 @RestController
-@RequestMapping("/user/test")
+@RequestMapping("/test")
 public class TestController {
 
 
@@ -31,18 +31,4 @@ public class TestController {
         return ResponseUtil.ok();
     }
 
-    /**
-     * 注册客户端
-     * @param clientId  客户端ID
-     * @param content	消息内容
-     * @return
-     */
-    @GetMapping("/push/{clientId}")
-    public Object pushAllMessage(@PathVariable("clientId")String clientId, String content) {
-        ChannelHandlerContext channel = ConnectionPool.getChannel(clientId);
-        Message message = new Message();
-        message.setContent(content);
-        channel.writeAndFlush(content);
-        return "success";
-    }
 }

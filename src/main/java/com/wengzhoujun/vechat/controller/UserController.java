@@ -11,6 +11,7 @@ import com.wengzhoujun.vechat.util.ResponseUtil;
 import com.wengzhoujun.vechat.util.UserUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class UserController {
     @ApiOperation(value = "通过手机号注册")
     @PostMapping("signUpByPhone")
     public Result signUpByPhone(HttpServletRequest request,
-                                @RequestParam String phone,
-                                @RequestParam String password) throws Exception {
+                                @ApiParam("手机号") @RequestParam String phone,
+                                @ApiParam("密码") @RequestParam String password) throws Exception {
         User user = UserUtils.initUser(phone, request);
         String salt = PasswordUtil.salt(phone);
         user.setSalt(salt);
@@ -51,8 +52,8 @@ public class UserController {
 
     @ApiOperation(value = "通过手机号登录")
     @PostMapping("signInByPhone")
-    public Result signInByPhone(@RequestParam String phone,
-                                @RequestParam String password) throws Exception {
+    public Result signInByPhone(@ApiParam("手机号") @RequestParam String phone,
+                                @ApiParam("密码") @RequestParam String password) throws Exception {
         User user = userService.findByPhone(phone);
         if (null == user) {
             return ResponseUtil.error(ErrorCode.USER_NOT_PRESENCE);
