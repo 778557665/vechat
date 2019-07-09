@@ -1,0 +1,14 @@
+package com.wengzhoujun.vechat;
+
+import com.wengzhoujun.vechat.netty.server.core.ImServer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class VechatApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(VechatApplication.class, args);
+	}
+
+}
