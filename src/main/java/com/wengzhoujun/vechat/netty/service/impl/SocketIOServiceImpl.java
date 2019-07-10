@@ -68,6 +68,7 @@ public class SocketIOServiceImpl implements SocketIOService {
         // 处理自定义的事件，与连接监听类似
         socketIOServer.addEventListener(PUSH_EVENT, Message.class, (client, data, ackSender) -> {
             // TODO do something
+            client.sendEvent(PUSH_EVENT, data);
         });
         socketIOServer.start();
     }
