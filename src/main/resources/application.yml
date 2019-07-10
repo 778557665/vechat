@@ -137,6 +137,7 @@ ignored:
     - /user/signUpByPhone
     - /user/common/needLogin
     - /druid/**
+    - /message/**
     - /swagger-ui.html
     - /swagger-resources/**
     - /swagger/**
