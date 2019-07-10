@@ -5,6 +5,7 @@ import com.wengzhoujun.vechat.netty.core.message.Message;
 import com.wengzhoujun.vechat.netty.server.core.ConnectionPool;
 import com.wengzhoujun.vechat.util.ResponseUtil;
 import io.netty.channel.ChannelHandlerContext;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yinjihuan
  *
  */
-@RestController
-@RequestMapping("/message")
+//@RestController
+//@RequestMapping("/message")
 public class MessageController {
 	
 	/**
