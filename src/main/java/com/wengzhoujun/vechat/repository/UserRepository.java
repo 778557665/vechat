@@ -11,4 +11,6 @@ import com.wengzhoujun.vechat.entity.User;
 public interface UserRepository extends CommonRepository<User, Long> {
 
     User findByPhone(String phone);
+
+    User findByChatMark(String keyword);
 }

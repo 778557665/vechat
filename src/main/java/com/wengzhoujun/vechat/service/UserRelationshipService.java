@@ -15,4 +15,6 @@ public interface UserRelationshipService {
 
     List<UserRelationship> findAllByUserId(Long userId);
 
+
+
 }

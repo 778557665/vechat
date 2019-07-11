@@ -38,4 +38,17 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public User findByKeyword(String keyword) {
+        User user = userRepository.findByPhone(keyword);
+        if (null != user) {
+            return user;
+        }
+        user = userRepository.findByChatMark(keyword);
+        if (null != user) {
+            return user;
+        }
+        return null;
+    }
 }

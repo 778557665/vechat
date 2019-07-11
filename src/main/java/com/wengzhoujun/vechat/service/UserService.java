@@ -18,4 +18,5 @@ public interface UserService {
 
     User findById(Long id);
 
+    User findByKeyword(String keyword);
 }

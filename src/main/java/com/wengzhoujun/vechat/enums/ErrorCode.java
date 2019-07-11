@@ -9,7 +9,8 @@ public enum ErrorCode {
 
     USER_NOT_PRESENCE("user_not_presence", "用户不存在"),
     WRONG_PHONE_OR_WRONG_PASSWORD("wrong_phone_or_wrong_password", "手机或密码错误"),
-    NEED_SIGN_IN("need_sign_in", "需要登录");
+    NEED_SIGN_IN("need_sign_in", "需要登录"),
+    DID_NOT_QUERY_THE_USER("did_not_query_the_user", "没有找到用户");
 
     private String code;
     private String msg;
