@@ -2,12 +2,10 @@ package com.wengzhoujun.vechat.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +15,7 @@ import java.util.Map;
  *
  * @author WengZhoujun
  */
+@Data
 @Entity
 @Table(name = "vc_us_user")
 @ApiModel(value = "用户")
@@ -30,6 +29,10 @@ public class User {
 
     @ApiModelProperty(value = "昵称")
     private String nickname;
+
+    @ApiModelProperty(value = "微信号 全局唯一")
+    @Column(unique = true)
+    private String chatMark;
 
     @ApiModelProperty(value = "密码")
     private String password;
@@ -57,6 +60,15 @@ public class User {
 
     @ApiModelProperty(value = "注册ip")
     private String regIp;
+
+    @ApiModelProperty(value = "地区")
+    private String region;
+
+    @ApiModelProperty(value = "个性签名")
+    private String signature;
+
+    @ApiModelProperty(value = "二维码")
+    private String qrCode;
 
     public User() {
     }
@@ -103,91 +115,4 @@ public class User {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getGender() {
-        return gender;
-    }
-
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getRegIp() {
-        return regIp;
-    }
-
-    public void setRegIp(String regIp) {
-        this.regIp = regIp;
-    }
 }

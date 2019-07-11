@@ -49,9 +49,11 @@ public class JwtTokenUtil {
      * @return
      */
     public static String generateToken(Map<String, Object> claims) {
+        Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims)
-                .setExpiration(DateUtils.createBySecond(new Date(), expiration))
+                .setIssuedAt(now)
+                .setExpiration(DateUtils.createBySecond(now, expiration))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }

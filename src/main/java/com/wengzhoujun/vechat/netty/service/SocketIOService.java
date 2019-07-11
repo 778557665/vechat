@@ -12,6 +12,8 @@ public interface SocketIOService {
     //推送的事件
     String PUSH_EVENT = "push_event";
 
+    String CLIENT_TO_CLIENT = "client_to_client";
+
     // 启动服务
     void start() throws Exception;
 

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created on 2019/7/8.
@@ -52,7 +54,8 @@ public class UserController {
 
     @ApiOperation(value = "通过手机号登录")
     @PostMapping("signInByPhone")
-    public Result signInByPhone(@ApiParam("手机号") @RequestParam String phone,
+    public Result signInByPhone(HttpServletResponse response,
+                                @ApiParam("手机号") @RequestParam String phone,
                                 @ApiParam("密码") @RequestParam String password) throws Exception {
         User user = userService.findByPhone(phone);
         if (null == user) {
@@ -62,6 +65,8 @@ public class UserController {
             return ResponseUtil.error(ErrorCode.WRONG_PHONE_OR_WRONG_PASSWORD);
         }
         String token = JwtTokenUtil.generateToken(new JwtClaims(user.getId(), user.getNickname()));
+        Cookie cookie = new Cookie(JwtTokenUtil.AUTH_HEADER, token);
+        response.addCookie(cookie);
         return ResponseUtil.ok(token);
     }
 
