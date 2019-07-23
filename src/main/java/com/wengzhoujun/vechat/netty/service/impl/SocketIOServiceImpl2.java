@@ -1,12 +1,11 @@
 package com.wengzhoujun.vechat.netty.service.impl;
 
-import com.corundumstudio.socketio.AckCallback;
-import com.corundumstudio.socketio.BroadcastAckCallback;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.wengzhoujun.vechat.netty.core.message.Message;
 import com.wengzhoujun.vechat.netty.core.message.Message2;
 import com.wengzhoujun.vechat.netty.service.SocketIOService;
+import com.wengzhoujun.vechat.netty.service.SocketIOService2;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author WengZhoujun
  */
 @Slf4j
-//@Service
-public class SocketIOServiceImpl implements SocketIOService {
+@Service
+public class SocketIOServiceImpl2 implements SocketIOService2 {
 
     // 用来存已连接的客户端
     private static Map<String, SocketIOClient> clientMap = new ConcurrentHashMap<>();
@@ -75,17 +74,17 @@ public class SocketIOServiceImpl implements SocketIOService {
         });
 
         // 处理自定义的事件，与连接监听类似 通知全部
-        socketIOServer.addEventListener(PUSH_EVENT, Message.class, (client, data, ackSender) -> {
+        socketIOServer.addEventListener(PUSH_EVENT, Message2.class, (client, data, ackSender) -> {
             // TODO do something
             socketIOServer.getBroadcastOperations().sendEvent(PUSH_EVENT, data);
         });
 
         //1对1
-        socketIOServer.addEventListener(CLIENT_TO_CLIENT, Message.class, (client, data, ackSender) -> {
+        socketIOServer.addEventListener(CLIENT_TO_CLIENT, Message2.class, (client, data, ackSender) -> {
             // TODO do something
             System.out.println(data);
             if (null != clientMap && null != data) {
-                clientMap.get(data.getId()).sendEvent(CLIENT_TO_CLIENT, data);
+                clientMap.get(data.getToUserId()).sendEvent(CLIENT_TO_CLIENT, data);
             }
         });
 
@@ -101,8 +100,8 @@ public class SocketIOServiceImpl implements SocketIOService {
     }
 
     @Override
-    public void pushMessageToUser(Message message) {
-        String id = message.getId();
+    public void pushMessageToUser(Message2 message) {
+        String id = message.getToUserId();
         if (StringUtils.isNotBlank(id)) {
             SocketIOClient client = clientMap.get(id);
             if (client != null) {
@@ -127,10 +126,4 @@ public class SocketIOServiceImpl implements SocketIOService {
         return null;
     }
 
-    public static void main(String[] args) {
-        Message data = new Message();
-        data.setId("1");
-        data.setContent("asdasda");
-        System.out.println(Arrays.asList(data));
-    }
 }

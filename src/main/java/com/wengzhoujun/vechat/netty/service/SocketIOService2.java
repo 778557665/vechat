@@ -1,13 +1,13 @@
 package com.wengzhoujun.vechat.netty.service;
 
-import com.wengzhoujun.vechat.netty.core.message.Message;
+import com.wengzhoujun.vechat.netty.core.message.Message2;
 
 /**
  * Created on 2019/7/9.
  *
  * @author WengZhoujun
  */
-public interface SocketIOService {
+public interface SocketIOService2 {
 
     //推送的事件
     String PUSH_EVENT = "push_event";
@@ -23,5 +23,5 @@ public interface SocketIOService {
     void stop();
 
     // 推送信息
-    void pushMessageToUser(Message message);
+    void pushMessageToUser(Message2 message);
 }

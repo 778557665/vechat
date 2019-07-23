@@ -21,37 +21,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/message")
 public class MessageController {
-
-    @Autowired
-    private SocketIOService socketIOService;
-
-    @ApiOperation(value = "发送消息至用户")
-    @PostMapping("/push")
-    public Result pushMessage(@ApiParam(value = "接收消息的用户id") @RequestParam String userId,
-                              @ApiParam(value = "消息内容") @RequestParam String content) {
-        Message message = new Message();
-        message.setId(userId);
-        message.setContent(content);
-        socketIOService.pushMessageToUser(message);
-        return ResponseUtil.ok();
-    }
-
-    /**
-     * 推送消息给所有客户端
-     * @param content	消息内容
-     * @return
-     */
-    @ApiOperation(value = "发送消息至多个用户")
-    @PostMapping("/pushAll")
-    public Result pushAllMessage(@ApiParam(value = "接收消息的用户ids") @RequestBody List<String> ids,
-                                 @ApiParam(value = "消息内容") @RequestParam String content) {
-        ids.forEach(c -> {
-            Message message = new Message();
-            message.setId(c);
-            message.setContent(content);
-            socketIOService.pushMessageToUser(message);
-        });
-        return ResponseUtil.ok();
-    }
+//
+//    @Autowired
+//    private SocketIOService socketIOService;
+//
+//    @ApiOperation(value = "发送消息至用户")
+//    @PostMapping("/push")
+//    public Result pushMessage(@ApiParam(value = "接收消息的用户id") @RequestParam String userId,
+//                              @ApiParam(value = "消息内容") @RequestParam String content) {
+//        Message message = new Message();
+//        message.setId(userId);
+//        message.setContent(content);
+//        socketIOService.pushMessageToUser(message);
+//        return ResponseUtil.ok();
+//    }
+//
+//    /**
+//     * 推送消息给所有客户端
+//     * @param content	消息内容
+//     * @return
+//     */
+//    @ApiOperation(value = "发送消息至多个用户")
+//    @PostMapping("/pushAll")
+//    public Result pushAllMessage(@ApiParam(value = "接收消息的用户ids") @RequestBody List<String> ids,
+//                                 @ApiParam(value = "消息内容") @RequestParam String content) {
+//        ids.forEach(c -> {
+//            Message message = new Message();
+//            message.setId(c);
+//            message.setContent(content);
+//            socketIOService.pushMessageToUser(message);
+//        });
+//        return ResponseUtil.ok();
+//    }
 
 }
