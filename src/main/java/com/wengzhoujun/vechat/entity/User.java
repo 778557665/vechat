@@ -1,12 +1,11 @@
 package com.wengzhoujun.vechat.entity;
 
+import com.wengzhoujun.vechat.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +18,9 @@ import java.util.Map;
 @Entity
 @Table(name = "vc_us_user")
 @ApiModel(value = "用户")
-public class User {
+public class User extends BaseEntity {
 
-    @ApiModelProperty(value = "id")
-    @Id
-    @GeneratedValue(generator = "id_generator")
-    @GenericGenerator(name = "id_generator", strategy = "redis_id")
-    private Long id;
+    private static final long serialVersionUID = 6534079659563618907L;
 
     @ApiModelProperty(value = "昵称")
     private String nickname;
@@ -52,12 +47,6 @@ public class User {
     @ApiModelProperty(value = "头像")
     private String avatar;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
-
-    @ApiModelProperty(value = "修改时间")
-    private Date updateTime;
-
     @ApiModelProperty(value = "注册ip")
     private String regIp;
 
@@ -73,11 +62,10 @@ public class User {
     public User() {
     }
 
-    public User(String phone, String nickname, Byte status, Date createTime, String regIp) {
+    public User(String phone, String nickname, Byte status, String regIp) {
         this.phone = phone;
         this.nickname = nickname;
         this.status = status;
-        this.createTime = createTime;
         this.regIp = regIp;
     }
 

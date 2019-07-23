@@ -14,7 +14,7 @@ import java.util.Date;
 public class UserUtils {
 
     public static User initUser(String phone, HttpServletRequest request){
-        User user = new User(phone, phone.substring(phone.length() - 4, phone.length()), User.StatusEnum.NORMAL.getCode(), new Date(), IpUtils.getRealIp(request));
+        User user = new User(phone, phone.substring(phone.length() - 4, phone.length()), User.StatusEnum.NORMAL.getCode(), IpUtils.getRealIp(request));
         return user;
     }
 }

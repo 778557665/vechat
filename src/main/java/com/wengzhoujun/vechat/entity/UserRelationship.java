@@ -1,5 +1,6 @@
 package com.wengzhoujun.vechat.entity;
 
+import com.wengzhoujun.vechat.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,9 @@ import java.util.Map;
 @Entity
 @Table(name = "vc_us_user_relationship")
 @ApiModel(value = "用户关系")
-public class UserRelationship {
+public class UserRelationship extends BaseEntity {
 
-    @ApiModelProperty(value = "id")
-    @Id
-    @GeneratedValue(generator = "id_generator")
-    @GenericGenerator(name = "id_generator", strategy = "redis_id")
-    private Long id;
+    private static final long serialVersionUID = -1893993678523502267L;
 
     @ApiModelProperty(value = "用户id")
     private Long userId;
