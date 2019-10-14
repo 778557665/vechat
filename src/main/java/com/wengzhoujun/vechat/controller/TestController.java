@@ -28,6 +28,7 @@ public class TestController {
     @ApiOperation(value = "测试")
     @PostMapping("test")
     public Result test(HttpServletRequest request) throws Exception {
+        System.out.println("测试测试");
         return ResponseUtil.ok();
     }
 
